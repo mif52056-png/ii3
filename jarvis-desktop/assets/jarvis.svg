@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs><radialGradient id="g"><stop stop-color="#55e9f8"/><stop offset=".48" stop-color="#176b8d"/><stop offset="1" stop-color="#071521"/></radialGradient><filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <circle cx="64" cy="64" r="58" fill="#081522" stroke="#4ee4f3" stroke-width="2"/>
+  <circle cx="64" cy="64" r="46" fill="none" stroke="#52cfe3" stroke-opacity=".65" stroke-dasharray="4 5"/>
+  <circle cx="64" cy="64" r="34" fill="url(#g)" stroke="#a4faff" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="64" y="79" text-anchor="middle" font-family="Georgia,serif" font-size="49" fill="#e0fdff">J</text>
+</svg>

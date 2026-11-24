@@ -1,0 +1,38 @@
+{
+  "name": "jarvis-desktop-assistant",
+  "version": "1.0.0",
+  "description": "JARVIS — локальный настольный голосовой ассистент",
+  "main": "main.js",
+  "author": "JARVIS Desktop",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist:win": "electron-builder --win nsis --x64",
+    "dist:mac": "electron-builder --mac dmg",
+    "dist:linux": "electron-builder --linux AppImage"
+  },
+  "devDependencies": {
+    "electron": "45.4.1",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.jarvis.desktopassistant",
+    "productName": "JARVIS",
+    "asar": true,
+    "directories": { "output": "dist" },
+    "files": ["main.js", "preload.js", "src/**/*", "assets/**/*", "package.json"],
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "artifactName": "JARVIS-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "JARVIS"
+    },
+    "mac": { "category": "public.app-category.utilities" },
+    "linux": { "category": "Utility" }
+  }
+}

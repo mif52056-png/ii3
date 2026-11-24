@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https: http://localhost http://127.0.0.1;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JARVIS — Desktop Assistant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="window-shell">
+    <header class="titlebar">
+      <div class="titlebar-brand"><span class="mini-reactor"></span><span>J.A.R.V.I.S.</span><small>DESKTOP INTELLIGENCE</small></div>
+      <div class="titlebar-center" id="windowStatus">СИСТЕМА ГОТОВА</div>
+      <div class="window-actions">
+        <button data-window="minimize" aria-label="Свернуть">—</button>
+        <button data-window="maximize" aria-label="Развернуть">□</button>
+        <button data-window="close" class="close-window" aria-label="Закрыть">×</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="profile-card"><div class="avatar-orb">J</div><div><strong id="sideAssistantName">JARVIS</strong><span>Персональный ИИ</span></div><i class="online-dot"></i></div>
+        <div class="nav-label">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+        <nav class="nav-list">
+          <button class="nav-item active" data-view="dashboard"><b>⌂</b>Обзор</button>
+          <button class="nav-item" data-view="chat"><b>◉</b>Диалог с ИИ<span class="nav-pill">AI</span></button>
+          <button class="nav-item" data-view="apps"><b>▦</b>Приложения</button>
+          <button class="nav-item" data-view="notes"><b>▤</b>Заметки и задачи</button>
+        </nav>
+        <div class="nav-label second-label">СИСТЕМА</div>
+        <nav class="nav-list"><button class="nav-item" data-view="settings"><b>⚙</b>Настройки</button></nav>
+        <div class="sidebar-bottom"><div class="connection-row"><span class="connection-led" id="aiLed"></span><div><strong id="aiStatus">Локальный режим</strong><small id="aiSubStatus">ИИ не подключён</small></div></div><div class="version-line">JARVIS CORE <span>v1.0.0</span></div></div>
+      </aside>
+
+      <main class="main-area">
+        <div class="topbar"><div><div class="eyebrow" id="pageEyebrow">ЦЕНТР УПРАВЛЕНИЯ</div><h1 id="pageTitle">Обзор системы</h1></div><div class="topbar-right"><div class="date-chip"><span>◷</span><span id="topDate">--</span></div><div class="user-chip"><div class="user-avatar">U</div><span id="topUser">Пользователь</span></div></div></div>
+
+        <section class="view active" id="view-dashboard">
+          <div class="welcome-banner"><div class="welcome-copy"><div class="live-tag"><span></span> ВСЕ СИСТЕМЫ В НОРМЕ</div><h2>Добро пожаловать.<br><em>Я готов к работе.</em></h2><p>Ваш персональный центр управления. Чем займёмся?</p><button class="primary-button" data-go="chat">Начать диалог <span>↗</span></button></div><div class="reactor-scene"><div class="reactor-halo halo-a"></div><div class="reactor-halo halo-b"></div><div class="reactor-core"><div class="core-inner">J</div></div><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div><div class="reactor-caption">JARVIS CORE <span>ONLINE</span></div></div><div class="banner-grid"></div></div>
+          <div class="section-heading"><div><span class="eyebrow">МОНИТОРИНГ</span><h3>Состояние системы</h3></div><button class="subtle-button" id="refreshSystem">↻ Обновить</button></div>
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span>ПЛАТФОРМА</span><b class="stat-icon">▣</b></div><strong id="platformStat">—</strong><small id="platformSub">Рабочая система</small></article>
+            <article class="stat-card"><div class="stat-top"><span>ОПЕРАТИВНАЯ ПАМЯТЬ</span><b class="stat-icon">▥</b></div><strong id="memoryStat">—</strong><div class="meter"><i id="memoryMeter"></i></div><small id="memorySub">Загрузка памяти</small></article>
+            <article class="stat-card"><div class="stat-top"><span>ПРОЦЕССОР</span><b class="stat-icon">⌘</b></div><strong id="cpuStat">—</strong><small id="cpuSub">Ядер: —</small></article>
+            <article class="stat-card"><div class="stat-top"><span>ЯДРО JARVIS</span><b class="stat-icon">◈</b></div><strong class="status-online">АКТИВНО</strong><small id="versionSub">Версия —</small></article>
+          </div>
+          <div class="lower-grid"><section class="panel quick-panel"><div class="panel-heading"><div><span class="eyebrow">БЫСТРЫЙ ДОСТУП</span><h3>Команды и действия</h3></div></div><div class="quick-grid"><button class="quick-action" data-command="Открой калькулятор"><span>▦</span><strong>Калькулятор</strong><small>Запустить приложение</small></button><button class="quick-action" data-command="Открой блокнот"><span>▤</span><strong>Блокнот</strong><small>Открыть редактор</small></button><button class="quick-action" data-command="Открой проводник"><span>▱</span><strong>Проводник</strong><small>Файлы компьютера</small></button><button class="quick-action" data-command="Открой диспетчер задач"><span>⌁</span><strong>Диспетчер задач</strong><small>Монитор системы</small></button></div></section><section class="panel activity-panel"><div class="panel-heading"><div><span class="eyebrow">ЖУРНАЛ</span><h3>Последние события</h3></div><span class="live-dot-label"><i></i> LIVE</span></div><div id="activityList" class="activity-list"><div class="empty-state">События появятся здесь</div></div></section></div>
+        </section>
+
+        <section class="view" id="view-chat">
+          <div class="chat-layout"><div class="chat-main panel"><div class="chat-header"><div class="chat-avatar">J</div><div><strong>JARVIS</strong><span><i></i> Готов к диалогу</span></div><button class="subtle-button clear-chat" id="clearChat">Очистить диалог</button></div><div class="chat-messages" id="chatMessages"><div class="chat-welcome"><div class="welcome-reactor">J</div><h2>На связи.</h2><p>Я могу помочь с вопросами, заметками и управлением приложениями.</p><div class="suggestion-list"><button data-suggestion="Открой калькулятор">Открой калькулятор <span>↗</span></button><button data-suggestion="Который час?">Который час? <span>↗</span></button><button data-suggestion="Помощь">Что ты умеешь? <span>↗</span></button></div></div></div><form class="chat-composer" id="chatForm"><button class="voice-button" type="button" id="voiceButton" title="Голосовой ввод">🎙</button><input id="chatInput" autocomplete="off" placeholder="Напиши сообщение или команду..." maxlength="4000"><button class="send-button" type="submit">Отправить <span>↗</span></button></form><div class="chat-footnote">JARVIS может ошибаться. Проверяй важную информацию.</div></div><aside class="chat-side"><div class="panel side-info"><span class="eyebrow">ВОЗМОЖНОСТИ</span><h3>Ваш ассистент</h3><div class="capability"><b>◉</b><div><strong>Умный диалог</strong><small>Через подключённую AI-модель</small></div></div><div class="capability"><b>⌘</b><div><strong>Управление ПК</strong><small>Только разрешённые команды</small></div></div><div class="capability"><b>▤</b><div><strong>Память и задачи</strong><small>Локальное хранение данных</small></div></div><div class="side-tip"><b>Быстрая подсказка</b><p>Скажи «запомни купить продукты» — и я сохраню это в заметках.</p></div></div></aside></div>
+        </section>
+
+        <section class="view" id="view-apps"><div class="section-heading"><div><span class="eyebrow">ЛОКАЛЬНЫЕ ИНСТРУМЕНТЫ</span><h3>Приложения и действия</h3><p class="section-description">Запускай программы и открывай полезные сайты прямо из JARVIS.</p></div></div><div class="app-cards"><article class="app-card"><div class="app-symbol">▦</div><div><h3>Калькулятор</h3><p>Быстрые вычисления</p></div><button data-launch="calculator">Запустить ↗</button></article><article class="app-card"><div class="app-symbol">▤</div><div><h3>Блокнот</h3><p>Текстовые заметки</p></div><button data-launch="notepad">Запустить ↗</button></article><article class="app-card"><div class="app-symbol">▱</div><div><h3>Проводник</h3><p>Домашняя папка пользователя</p></div><button data-launch="explorer">Открыть ↗</button></article><article class="app-card"><div class="app-symbol">⌁</div><div><h3>Диспетчер задач</h3><p>Системный монитор</p></div><button data-launch="taskmanager">Открыть ↗</button></article><article class="app-card"><div class="app-symbol">⇩</div><div><h3>Загрузки</h3><p>Папка скачанных файлов</p></div><button id="openDownloads">Открыть ↗</button></article></div><div class="section-heading site-heading"><div><span class="eyebrow">ИНТЕРНЕТ</span><h3>Быстрый запуск сайтов</h3></div></div><div class="site-grid"><button data-site="youtube"><b>▶</b><span>YouTube</span><small>Видео и музыка</small></button><button data-site="google"><b>G</b><span>Google</span><small>Поиск в интернете</small></button><button data-site="wikipedia"><b>W</b><span>Wikipedia</span><small>Энциклопедия</small></button><button data-site="github"><b>⌘</b><span>GitHub</span><small>Разработка</small></button></div><p class="security-note">Доступны только перечисленные программы и сайты. JARVIS не выполняет произвольные команды терминала.</p></section>
+
+        <section class="view" id="view-notes"><div class="section-heading"><div><span class="eyebrow">ЛИЧНАЯ ПАМЯТЬ</span><h3>Заметки и задачи</h3><p class="section-description">Данные хранятся локально на этом компьютере.</p></div></div><div class="notes-columns"><section class="panel notes-panel"><div class="panel-heading"><div><span class="eyebrow">БАЗА ЗНАНИЙ</span><h3>Заметки</h3></div><span class="count-badge" id="notesCount">0</span></div><form class="inline-add" id="noteForm"><input id="noteInput" maxlength="2000" placeholder="Новая заметка..."><button type="submit">+</button></form><div id="notesList" class="record-list"></div></section><section class="panel notes-panel"><div class="panel-heading"><div><span class="eyebrow">ПЛАНИРОВАНИЕ</span><h3>Список задач</h3></div><span class="count-badge" id="tasksCount">0</span></div><form class="inline-add" id="taskForm"><input id="taskInput" maxlength="500" placeholder="Добавить задачу..."><button type="submit">+</button></form><div id="tasksList" class="record-list"></div></section></div></section>
+
+        <section class="view" id="view-settings"><div class="section-heading"><div><span class="eyebrow">КОНФИГУРАЦИЯ</span><h3>Настройки JARVIS</h3><p class="section-description">Настрой имя ассистента, голос и подключение нейросети.</p></div></div><div class="settings-layout"><section class="panel settings-panel"><div class="panel-heading"><div><span class="eyebrow">ПЕРСОНАЛИЗАЦИЯ</span><h3>Основные настройки</h3></div></div><form id="settingsForm"><label>Имя ассистента<input id="assistantName" maxlength="40" value="JARVIS"></label><label>Как к тебе обращаться<input id="displayName" maxlength="60" value="Пользователь"></label><div class="setting-toggle"><div><strong>Голосовой ответ</strong><small>Зачитывать ответы вслух</small></div><label class="switch"><input type="checkbox" id="voiceOutput" checked><span></span></label></div><div class="setting-toggle"><div><strong>Звуковые эффекты</strong><small>Звуки интерфейса</small></div><label class="switch"><input type="checkbox" id="soundEffects"><span></span></label></div><button class="primary-button save-button" type="submit">Сохранить настройки <span>↗</span></button></form></section><section class="panel settings-panel"><div class="panel-heading"><div><span class="eyebrow">ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ</span><h3>Подключение модели</h3></div><span class="count-badge" id="apiBadge">OFFLINE</span></div><div class="api-explainer">Подключи совместимый с OpenAI Chat Completions API. Без ключа работают локальные команды, заметки и запуск приложений.</div><form id="apiForm"><label>API Base URL<input id="apiEndpoint" placeholder="https://api.openai.com/v1"></label><label>Модель<input id="apiModel" placeholder="gpt-4o-mini"></label><label>API-ключ<input id="apiKey" type="password" autocomplete="new-password" placeholder="Вставь API-ключ (оставь пустым, чтобы не менять)"></label><div class="key-status" id="keyStatus">Ключ не сохранён</div><div class="api-actions"><button class="primary-button" type="submit">Сохранить подключение <span>↗</span></button><button class="text-button" type="button" id="clearApiKey">Удалить ключ</button></div></form><p class="privacy-note">Ключ шифруется средствами операционной системы и хранится в профиле приложения. Запросы к выбранному API отправляются напрямую из приложения его провайдеру.</p></section></div></section>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>
